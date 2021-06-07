@@ -32,17 +32,21 @@ const urlDatabase = {
 //   res.send(`a = ${a}`);
 //  });
 
+//route for list of url page
 app.get('/urls', (req, res) => {
   const templateVars = { urls: urlDatabase };
   res.render('urls_index', templateVars);
 });
-
+//route for adding new url to the list
+app.get('/urls/new', (req, res) => {
+  res.render('urls_new');
+});
+//route for existing url display page
 app.get('/urls/:shortURL', (req, res) => {
   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
   res.render('urls_show', templateVars);
 });
- 
-
+//app to listen to defined PORT for receiving request from client
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
